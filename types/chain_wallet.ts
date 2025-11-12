@@ -1658,6 +1658,12 @@ export type ChainWallet = {
             "type": "u8"
           },
           {
+            "name": "name",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
             "name": "timestamp",
             "type": "i64"
           }
@@ -1692,6 +1698,12 @@ export type ChainWallet = {
           {
             "name": "userAdminsNum",
             "type": "u8"
+          },
+          {
+            "name": "name",
+            "type": {
+              "option": "string"
+            }
           }
         ]
       }

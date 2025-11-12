@@ -1652,6 +1652,12 @@
             "type": "u8"
           },
           {
+            "name": "name",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
             "name": "timestamp",
             "type": "i64"
           }
@@ -1686,6 +1692,12 @@
           {
             "name": "user_admins_num",
             "type": "u8"
+          },
+          {
+            "name": "name",
+            "type": {
+              "option": "string"
+            }
           }
         ]
       }
