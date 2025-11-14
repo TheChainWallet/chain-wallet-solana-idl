@@ -730,6 +730,128 @@
       ]
     },
     {
+      "name": "risk_approval_execute",
+      "discriminator": [
+        123,
+        209,
+        44,
+        181,
+        23,
+        61,
+        57,
+        137
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "custody_account",
+          "writable": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  112,
+                  112,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proxy_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "RiskApprovalParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "risk_approval_push",
+      "discriminator": [
+        28,
+        85,
+        50,
+        13,
+        130,
+        74,
+        203,
+        214
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "custody_account",
+          "writable": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  112,
+                  112,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proxy_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "data",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
       "name": "rule_add",
       "discriminator": [
         250,
@@ -1127,6 +1249,19 @@
       ]
     },
     {
+      "name": "DelayPushEvent",
+      "discriminator": [
+        4,
+        76,
+        98,
+        197,
+        54,
+        212,
+        220,
+        94
+      ]
+    },
+    {
       "name": "ExecuteApprovalFailEvent",
       "discriminator": [
         90,
@@ -1176,6 +1311,45 @@
         48,
         131,
         81
+      ]
+    },
+    {
+      "name": "ExecuteRiskApprovalFailEvent",
+      "discriminator": [
+        81,
+        124,
+        173,
+        36,
+        123,
+        88,
+        7,
+        143
+      ]
+    },
+    {
+      "name": "ExecuteRiskApprovalSuccessEvent",
+      "discriminator": [
+        11,
+        50,
+        64,
+        240,
+        243,
+        249,
+        90,
+        192
+      ]
+    },
+    {
+      "name": "RiskApprovalPushEvent",
+      "discriminator": [
+        191,
+        175,
+        124,
+        80,
+        77,
+        96,
+        44,
+        78
       ]
     }
   ],
@@ -1321,7 +1495,7 @@
             "type": "pubkey"
           },
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1416,7 +1590,7 @@
             "type": "pubkey"
           },
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1438,7 +1612,7 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1464,7 +1638,7 @@
             "type": "pubkey"
           },
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1494,7 +1668,7 @@
             "type": "pubkey"
           },
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1538,7 +1712,7 @@
             "type": "pubkey"
           },
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1624,7 +1798,7 @@
             "type": "pubkey"
           },
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1744,6 +1918,16 @@
             }
           },
           {
+            "name": "need_approval_transactions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "NeedApprovalTransaction"
+                }
+              }
+            }
+          },
+          {
             "name": "approval_nonce",
             "type": {
               "array": [
@@ -1780,6 +1964,26 @@
       }
     },
     {
+      "name": "DelayPushEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "execute_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
       "name": "DelayTransaction",
       "type": {
         "kind": "struct",
@@ -1810,7 +2014,7 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1848,7 +2052,7 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1882,7 +2086,7 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "custody_account",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1915,7 +2119,61 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "custody_account",
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExecuteRiskApprovalFailEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "reason",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExecuteRiskApprovalSuccessEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -2042,6 +2300,62 @@
           {
             "name": "manager_num",
             "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NeedApprovalTransaction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "RiskApprovalParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "data",
+            "type": "bytes"
+          },
+          {
+            "name": "hashs",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  64
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "RiskApprovalPushEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
           }
         ]
       }

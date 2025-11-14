@@ -736,6 +736,128 @@ export type ChainWallet = {
       ]
     },
     {
+      "name": "riskApprovalExecute",
+      "discriminator": [
+        123,
+        209,
+        44,
+        181,
+        23,
+        61,
+        57,
+        137
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "custodyAccount",
+          "writable": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  112,
+                  112,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proxyProgram"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "riskApprovalParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "riskApprovalPush",
+      "discriminator": [
+        28,
+        85,
+        50,
+        13,
+        130,
+        74,
+        203,
+        214
+      ],
+      "accounts": [
+        {
+          "name": "user",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "custodyAccount",
+          "writable": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  112,
+                  112,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proxyProgram"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "data",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
       "name": "ruleAdd",
       "discriminator": [
         250,
@@ -1133,6 +1255,19 @@ export type ChainWallet = {
       ]
     },
     {
+      "name": "delayPushEvent",
+      "discriminator": [
+        4,
+        76,
+        98,
+        197,
+        54,
+        212,
+        220,
+        94
+      ]
+    },
+    {
       "name": "executeApprovalFailEvent",
       "discriminator": [
         90,
@@ -1182,6 +1317,45 @@ export type ChainWallet = {
         48,
         131,
         81
+      ]
+    },
+    {
+      "name": "executeRiskApprovalFailEvent",
+      "discriminator": [
+        81,
+        124,
+        173,
+        36,
+        123,
+        88,
+        7,
+        143
+      ]
+    },
+    {
+      "name": "executeRiskApprovalSuccessEvent",
+      "discriminator": [
+        11,
+        50,
+        64,
+        240,
+        243,
+        249,
+        90,
+        192
+      ]
+    },
+    {
+      "name": "riskApprovalPushEvent",
+      "discriminator": [
+        191,
+        175,
+        124,
+        80,
+        77,
+        96,
+        44,
+        78
       ]
     }
   ],
@@ -1327,7 +1501,7 @@ export type ChainWallet = {
             "type": "pubkey"
           },
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1422,7 +1596,7 @@ export type ChainWallet = {
             "type": "pubkey"
           },
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1444,7 +1618,7 @@ export type ChainWallet = {
         "kind": "struct",
         "fields": [
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1470,7 +1644,7 @@ export type ChainWallet = {
             "type": "pubkey"
           },
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1500,7 +1674,7 @@ export type ChainWallet = {
             "type": "pubkey"
           },
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1544,7 +1718,7 @@ export type ChainWallet = {
             "type": "pubkey"
           },
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1630,7 +1804,7 @@ export type ChainWallet = {
             "type": "pubkey"
           },
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1750,6 +1924,16 @@ export type ChainWallet = {
             }
           },
           {
+            "name": "needApprovalTransactions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "needApprovalTransaction"
+                }
+              }
+            }
+          },
+          {
             "name": "approvalNonce",
             "type": {
               "array": [
@@ -1786,6 +1970,26 @@ export type ChainWallet = {
       }
     },
     {
+      "name": "delayPushEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "executeAt",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
       "name": "delayTransaction",
       "type": {
         "kind": "struct",
@@ -1816,7 +2020,7 @@ export type ChainWallet = {
         "kind": "struct",
         "fields": [
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1854,7 +2058,7 @@ export type ChainWallet = {
         "kind": "struct",
         "fields": [
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1888,7 +2092,7 @@ export type ChainWallet = {
         "kind": "struct",
         "fields": [
           {
-            "name": "custodyAccount",
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -1921,7 +2125,61 @@ export type ChainWallet = {
         "kind": "struct",
         "fields": [
           {
-            "name": "custodyAccount",
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "executeRiskApprovalFailEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "reason",
+            "type": "string"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "executeRiskApprovalSuccessEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
             "type": "pubkey"
           },
           {
@@ -2048,6 +2306,62 @@ export type ChainWallet = {
           {
             "name": "managerNum",
             "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "needApprovalTransaction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "riskApprovalParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "data",
+            "type": "bytes"
+          },
+          {
+            "name": "hashs",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  64
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "riskApprovalPushEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
           }
         ]
       }

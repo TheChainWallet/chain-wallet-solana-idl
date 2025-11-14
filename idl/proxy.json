@@ -296,6 +296,16 @@
             }
           },
           {
+            "name": "need_approval_transactions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "NeedApprovalTransaction"
+                }
+              }
+            }
+          },
+          {
             "name": "approval_nonce",
             "type": {
               "array": [
@@ -424,6 +434,23 @@
           },
           {
             "name": "NotIn"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NeedApprovalTransaction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
           }
         ]
       }

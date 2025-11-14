@@ -302,6 +302,16 @@ export type Proxy = {
             }
           },
           {
+            "name": "needApprovalTransactions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "needApprovalTransaction"
+                }
+              }
+            }
+          },
+          {
             "name": "approvalNonce",
             "type": {
               "array": [
@@ -430,6 +440,23 @@ export type Proxy = {
           },
           {
             "name": "notIn"
+          }
+        ]
+      }
+    },
+    {
+      "name": "needApprovalTransaction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
           }
         ]
       }
