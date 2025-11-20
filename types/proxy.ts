@@ -78,11 +78,11 @@ export type Proxy = {
           }
         },
         {
-          "name": "systemProgram",
-          "address": "11111111111111111111111111111111"
+          "name": "proxyProgram"
         },
         {
-          "name": "proxyProgram"
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
         },
         {
           "name": "chainWalletProgram",
@@ -321,6 +321,10 @@ export type Proxy = {
             }
           },
           {
+            "name": "delayNonce",
+            "type": "u64"
+          },
+          {
             "name": "status",
             "type": {
               "defined": {
@@ -368,6 +372,10 @@ export type Proxy = {
                 32
               ]
             }
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
           }
         ]
       }

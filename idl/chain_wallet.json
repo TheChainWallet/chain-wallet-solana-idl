@@ -730,69 +730,6 @@
       ]
     },
     {
-      "name": "risk_approval_execute",
-      "discriminator": [
-        123,
-        209,
-        44,
-        181,
-        23,
-        61,
-        57,
-        137
-      ],
-      "accounts": [
-        {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "custody_account",
-          "writable": true
-        },
-        {
-          "name": "config",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  112,
-                  112,
-                  45,
-                  99,
-                  111,
-                  110,
-                  102,
-                  105,
-                  103
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "proxy_program"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "params",
-          "type": {
-            "defined": {
-              "name": "RiskApprovalParams"
-            }
-          }
-        }
-      ]
-    },
-    {
       "name": "risk_approval_push",
       "discriminator": [
         28,
@@ -1158,6 +1095,32 @@
   ],
   "events": [
     {
+      "name": "AddExecutorsEvent",
+      "discriminator": [
+        1,
+        85,
+        207,
+        173,
+        65,
+        251,
+        248,
+        67
+      ]
+    },
+    {
+      "name": "AddManagersEvent",
+      "discriminator": [
+        168,
+        230,
+        250,
+        112,
+        24,
+        159,
+        36,
+        88
+      ]
+    },
+    {
       "name": "AddRuleEvent",
       "discriminator": [
         223,
@@ -1249,6 +1212,45 @@
       ]
     },
     {
+      "name": "DelExecutorsEvent",
+      "discriminator": [
+        193,
+        122,
+        8,
+        83,
+        200,
+        97,
+        125,
+        85
+      ]
+    },
+    {
+      "name": "DelManagersEvent",
+      "discriminator": [
+        252,
+        131,
+        156,
+        136,
+        195,
+        65,
+        166,
+        250
+      ]
+    },
+    {
+      "name": "DelRuleEvent",
+      "discriminator": [
+        178,
+        97,
+        68,
+        90,
+        30,
+        5,
+        160,
+        172
+      ]
+    },
+    {
       "name": "DelayPushEvent",
       "discriminator": [
         4,
@@ -1311,32 +1313,6 @@
         48,
         131,
         81
-      ]
-    },
-    {
-      "name": "ExecuteRiskApprovalFailEvent",
-      "discriminator": [
-        81,
-        124,
-        173,
-        36,
-        123,
-        88,
-        7,
-        143
-      ]
-    },
-    {
-      "name": "ExecuteRiskApprovalSuccessEvent",
-      "discriminator": [
-        11,
-        50,
-        64,
-        240,
-        243,
-        249,
-        90,
-        192
       ]
     },
     {
@@ -1481,6 +1457,54 @@
           },
           {
             "name": "Locked"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AddExecutorsEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "executors",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AddManagersEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "managers",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
           }
         ]
       }
@@ -1802,13 +1826,17 @@
             "type": "pubkey"
           },
           {
+            "name": "custody",
+            "type": "pubkey"
+          },
+          {
             "name": "executors",
             "type": {
               "vec": "pubkey"
             }
           },
           {
-            "name": "user_admins",
+            "name": "managers",
             "type": {
               "vec": "pubkey"
             }
@@ -1937,6 +1965,10 @@
             }
           },
           {
+            "name": "delay_nonce",
+            "type": "u64"
+          },
+          {
             "name": "status",
             "type": {
               "defined": {
@@ -1964,6 +1996,84 @@
       }
     },
     {
+      "name": "DelExecutorsEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "executors",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DelManagersEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "managers",
+            "type": {
+              "vec": "pubkey"
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "DelRuleEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "rules",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "Rule"
+                }
+              }
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
       "name": "DelayPushEvent",
       "type": {
         "kind": "struct",
@@ -1971,6 +2081,19 @@
           {
             "name": "wallet",
             "type": "pubkey"
+          },
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
           },
           {
             "name": "timestamp",
@@ -2004,6 +2127,10 @@
                 32
               ]
             }
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
           }
         ]
       }
@@ -2132,58 +2259,8 @@
             }
           },
           {
-            "name": "timestamp",
-            "type": "i64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ExecuteRiskApprovalFailEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "wallet",
-            "type": "pubkey"
-          },
-          {
-            "name": "hash",
-            "type": {
-              "array": [
-                "u8",
-                32
-              ]
-            }
-          },
-          {
-            "name": "reason",
-            "type": "string"
-          },
-          {
-            "name": "timestamp",
-            "type": "i64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ExecuteRiskApprovalSuccessEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "wallet",
-            "type": "pubkey"
-          },
-          {
-            "name": "hash",
-            "type": {
-              "array": [
-                "u8",
-                32
-              ]
-            }
+            "name": "nonce",
+            "type": "u64"
           },
           {
             "name": "timestamp",
@@ -2316,29 +2393,6 @@
                 "u8",
                 32
               ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "RiskApprovalParams",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "data",
-            "type": "bytes"
-          },
-          {
-            "name": "hashs",
-            "type": {
-              "vec": {
-                "array": [
-                  "u8",
-                  64
-                ]
-              }
             }
           }
         ]

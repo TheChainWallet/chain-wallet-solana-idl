@@ -72,11 +72,11 @@
           }
         },
         {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
+          "name": "proxy_program"
         },
         {
-          "name": "proxy_program"
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
         },
         {
           "name": "chain_wallet_program",
@@ -315,6 +315,10 @@
             }
           },
           {
+            "name": "delay_nonce",
+            "type": "u64"
+          },
+          {
             "name": "status",
             "type": {
               "defined": {
@@ -362,6 +366,10 @@
                 32
               ]
             }
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
           }
         ]
       }
