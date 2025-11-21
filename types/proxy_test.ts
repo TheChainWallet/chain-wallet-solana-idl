@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/proxy_test.json`.
  */
 export type ProxyTest = {
-  "address": "GVyJfjZbdXKFrBM27PiVLBv4ymFRYXxLcanbCfSno7uU",
+  "address": "BkJA6dAxSqhWAjAtejnDhsbo3tfEXMaAEQGsgMkK1djC",
   "metadata": {
     "name": "proxyTest",
     "version": "0.1.0",

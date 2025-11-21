@@ -86,7 +86,7 @@ export type Proxy = {
         },
         {
           "name": "chainWalletProgram",
-          "address": "8b1w214H6QshcE7EvFu2Kg6ry4pmKEdtiaB9yukRuk9k"
+          "address": "DdetR1mTaQfj8GoQGcK4HFbeAfTiW74Z7fA6fptDsau7"
         }
       ],
       "args": [
@@ -233,10 +233,6 @@ export type Proxy = {
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "maxEstimateGas",
-            "type": "u64"
-          },
           {
             "name": "feeTransaction",
             "type": "u64"

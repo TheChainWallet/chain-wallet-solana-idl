@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/chain_wallet.json`.
  */
 export type ChainWallet = {
-  "address": "8b1w214H6QshcE7EvFu2Kg6ry4pmKEdtiaB9yukRuk9k",
+  "address": "DdetR1mTaQfj8GoQGcK4HFbeAfTiW74Z7fA6fptDsau7",
   "metadata": {
     "name": "chainWallet",
     "version": "0.1.0",
@@ -1762,10 +1762,6 @@ export type ChainWallet = {
         "kind": "struct",
         "fields": [
           {
-            "name": "maxEstimateGas",
-            "type": "u64"
-          },
-          {
             "name": "feeTransaction",
             "type": "u64"
           },
@@ -1791,10 +1787,6 @@ export type ChainWallet = {
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "maxEstimateGas",
-            "type": "u64"
-          },
           {
             "name": "feeTransaction",
             "type": "u64"

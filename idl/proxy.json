@@ -80,7 +80,7 @@
         },
         {
           "name": "chain_wallet_program",
-          "address": "8b1w214H6QshcE7EvFu2Kg6ry4pmKEdtiaB9yukRuk9k"
+          "address": "DdetR1mTaQfj8GoQGcK4HFbeAfTiW74Z7fA6fptDsau7"
         }
       ],
       "args": [
@@ -227,10 +227,6 @@
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "max_estimate_gas",
-            "type": "u64"
-          },
           {
             "name": "fee_transaction",
             "type": "u64"
