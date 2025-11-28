@@ -231,67 +231,7 @@
       ],
       "accounts": [
         {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "custody_account",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "config",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  112,
-                  112,
-                  45,
-                  99,
-                  111,
-                  110,
-                  102,
-                  105,
-                  103
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "proxy_program"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": "bytes"
-        }
-      ]
-    },
-    {
-      "name": "delay_push",
-      "discriminator": [
-        245,
-        231,
-        36,
-        61,
-        33,
-        134,
-        92,
-        165
-      ],
-      "accounts": [
-        {
-          "name": "user",
+          "name": "executor",
           "writable": true,
           "signer": true
         },
@@ -333,10 +273,64 @@
         {
           "name": "data",
           "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "execute",
+      "discriminator": [
+        130,
+        221,
+        242,
+        154,
+        13,
+        193,
+        189,
+        29
+      ],
+      "accounts": [
+        {
+          "name": "executor",
+          "signer": true
         },
         {
-          "name": "execute_at",
-          "type": "i64"
+          "name": "custody_account"
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  112,
+                  112,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proxy_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "data",
+          "type": "bytes"
         }
       ]
     },
@@ -507,16 +501,7 @@
           "address": "11111111111111111111111111111111"
         }
       ],
-      "args": [
-        {
-          "name": "status",
-          "type": {
-            "defined": {
-              "name": "AccountStatus"
-            }
-          }
-        }
-      ]
+      "args": []
     },
     {
       "name": "manager_add",
@@ -630,139 +615,6 @@
           "type": {
             "vec": "u32"
           }
-        }
-      ]
-    },
-    {
-      "name": "proxy",
-      "discriminator": [
-        15,
-        160,
-        123,
-        200,
-        251,
-        36,
-        176,
-        26
-      ],
-      "accounts": [
-        {
-          "name": "executor_pda",
-          "signer": true
-        },
-        {
-          "name": "executor",
-          "signer": true
-        },
-        {
-          "name": "custody_account"
-        },
-        {
-          "name": "config",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  112,
-                  112,
-                  45,
-                  99,
-                  111,
-                  110,
-                  102,
-                  105,
-                  103
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "fee",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  102,
-                  101,
-                  101
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "proxy_program"
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": "bytes"
-        }
-      ]
-    },
-    {
-      "name": "risk_approval_push",
-      "discriminator": [
-        28,
-        85,
-        50,
-        13,
-        130,
-        74,
-        203,
-        214
-      ],
-      "accounts": [
-        {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "custody_account",
-          "writable": true
-        },
-        {
-          "name": "config",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  112,
-                  112,
-                  45,
-                  99,
-                  111,
-                  110,
-                  102,
-                  105,
-                  103
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "proxy_program"
-        },
-        {
-          "name": "system_program",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": "bytes"
         }
       ]
     },
@@ -1112,6 +964,19 @@
       ]
     },
     {
+      "name": "ChangeAutoLockEvent",
+      "discriminator": [
+        105,
+        101,
+        87,
+        181,
+        39,
+        72,
+        215,
+        240
+      ]
+    },
+    {
       "name": "ChangeExecutorsEvent",
       "discriminator": [
         98,
@@ -1305,6 +1170,32 @@
         44,
         78
       ]
+    },
+    {
+      "name": "RiskLockEvent",
+      "discriminator": [
+        207,
+        224,
+        26,
+        12,
+        212,
+        240,
+        240,
+        45
+      ]
+    },
+    {
+      "name": "RiskRejectEvent",
+      "discriminator": [
+        171,
+        79,
+        59,
+        64,
+        191,
+        55,
+        30,
+        59
+      ]
     }
   ],
   "errors": [
@@ -1377,6 +1268,11 @@
       "code": 6013,
       "name": "ManagerNotBeEmpty",
       "msg": "Managers can not be empty"
+    },
+    {
+      "code": 6014,
+      "name": "LockAccountNotExecutable",
+      "msg": "Lock account exector can executable"
     }
   ],
   "types": [
@@ -1437,6 +1333,12 @@
         "variants": [
           {
             "name": "Normal"
+          },
+          {
+            "name": "Delay",
+            "fields": [
+              "u32"
+            ]
           },
           {
             "name": "Locked"
@@ -1583,6 +1485,30 @@
                 "vec": "pubkey"
               }
             ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ChangeAutoLockEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "enable_auto_lock",
+            "type": "bool"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
           }
         ]
       }
@@ -1781,7 +1707,10 @@
             "type": "pubkey"
           },
           {
-            "name": "proxy_program",
+            "name": "lock_pubkey",
+            "docs": [
+              "use to lock account when execute with trigger lock"
+            ],
             "type": "pubkey"
           }
         ]
@@ -1861,6 +1790,10 @@
           {
             "name": "threshold",
             "type": "u8"
+          },
+          {
+            "name": "enable_auto_lock",
+            "type": "bool"
           },
           {
             "name": "executor_num",
@@ -1954,6 +1887,10 @@
           {
             "name": "threshold",
             "type": "u8"
+          },
+          {
+            "name": "enable_auto_lock",
+            "type": "bool"
           },
           {
             "name": "seeds_nonce",
@@ -2390,6 +2327,38 @@
       }
     },
     {
+      "name": "RiskLockEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RiskRejectEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
       "name": "Rule",
       "type": {
         "kind": "struct",
@@ -2724,12 +2693,6 @@
       "type": {
         "kind": "enum",
         "variants": [
-          {
-            "name": "Delay",
-            "fields": [
-              "i64"
-            ]
-          },
           {
             "name": "Lock"
           },

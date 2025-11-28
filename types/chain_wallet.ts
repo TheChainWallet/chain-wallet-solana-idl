@@ -237,67 +237,7 @@ export type ChainWallet = {
       ],
       "accounts": [
         {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "custodyAccount",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "config",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  112,
-                  112,
-                  45,
-                  99,
-                  111,
-                  110,
-                  102,
-                  105,
-                  103
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "proxyProgram"
-        },
-        {
-          "name": "systemProgram",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": "bytes"
-        }
-      ]
-    },
-    {
-      "name": "delayPush",
-      "discriminator": [
-        245,
-        231,
-        36,
-        61,
-        33,
-        134,
-        92,
-        165
-      ],
-      "accounts": [
-        {
-          "name": "user",
+          "name": "executor",
           "writable": true,
           "signer": true
         },
@@ -339,10 +279,64 @@ export type ChainWallet = {
         {
           "name": "data",
           "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "execute",
+      "discriminator": [
+        130,
+        221,
+        242,
+        154,
+        13,
+        193,
+        189,
+        29
+      ],
+      "accounts": [
+        {
+          "name": "executor",
+          "signer": true
         },
         {
-          "name": "executeAt",
-          "type": "i64"
+          "name": "custodyAccount"
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  112,
+                  112,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proxyProgram"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "data",
+          "type": "bytes"
         }
       ]
     },
@@ -513,16 +507,7 @@ export type ChainWallet = {
           "address": "11111111111111111111111111111111"
         }
       ],
-      "args": [
-        {
-          "name": "status",
-          "type": {
-            "defined": {
-              "name": "accountStatus"
-            }
-          }
-        }
-      ]
+      "args": []
     },
     {
       "name": "managerAdd",
@@ -636,139 +621,6 @@ export type ChainWallet = {
           "type": {
             "vec": "u32"
           }
-        }
-      ]
-    },
-    {
-      "name": "proxy",
-      "discriminator": [
-        15,
-        160,
-        123,
-        200,
-        251,
-        36,
-        176,
-        26
-      ],
-      "accounts": [
-        {
-          "name": "executorPda",
-          "signer": true
-        },
-        {
-          "name": "executor",
-          "signer": true
-        },
-        {
-          "name": "custodyAccount"
-        },
-        {
-          "name": "config",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  112,
-                  112,
-                  45,
-                  99,
-                  111,
-                  110,
-                  102,
-                  105,
-                  103
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "fee",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  102,
-                  101,
-                  101
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "proxyProgram"
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": "bytes"
-        }
-      ]
-    },
-    {
-      "name": "riskApprovalPush",
-      "discriminator": [
-        28,
-        85,
-        50,
-        13,
-        130,
-        74,
-        203,
-        214
-      ],
-      "accounts": [
-        {
-          "name": "user",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "custodyAccount",
-          "writable": true
-        },
-        {
-          "name": "config",
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  112,
-                  112,
-                  45,
-                  99,
-                  111,
-                  110,
-                  102,
-                  105,
-                  103
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "name": "proxyProgram"
-        },
-        {
-          "name": "systemProgram",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": [
-        {
-          "name": "data",
-          "type": "bytes"
         }
       ]
     },
@@ -1118,6 +970,19 @@ export type ChainWallet = {
       ]
     },
     {
+      "name": "changeAutoLockEvent",
+      "discriminator": [
+        105,
+        101,
+        87,
+        181,
+        39,
+        72,
+        215,
+        240
+      ]
+    },
+    {
       "name": "changeExecutorsEvent",
       "discriminator": [
         98,
@@ -1311,6 +1176,32 @@ export type ChainWallet = {
         44,
         78
       ]
+    },
+    {
+      "name": "riskLockEvent",
+      "discriminator": [
+        207,
+        224,
+        26,
+        12,
+        212,
+        240,
+        240,
+        45
+      ]
+    },
+    {
+      "name": "riskRejectEvent",
+      "discriminator": [
+        171,
+        79,
+        59,
+        64,
+        191,
+        55,
+        30,
+        59
+      ]
     }
   ],
   "errors": [
@@ -1383,6 +1274,11 @@ export type ChainWallet = {
       "code": 6013,
       "name": "managerNotBeEmpty",
       "msg": "Managers can not be empty"
+    },
+    {
+      "code": 6014,
+      "name": "lockAccountNotExecutable",
+      "msg": "Lock account exector can executable"
     }
   ],
   "types": [
@@ -1443,6 +1339,12 @@ export type ChainWallet = {
         "variants": [
           {
             "name": "normal"
+          },
+          {
+            "name": "delay",
+            "fields": [
+              "u32"
+            ]
           },
           {
             "name": "locked"
@@ -1589,6 +1491,30 @@ export type ChainWallet = {
                 "vec": "pubkey"
               }
             ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "changeAutoLockEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "user",
+            "type": "pubkey"
+          },
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "enableAutoLock",
+            "type": "bool"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
           }
         ]
       }
@@ -1787,7 +1713,10 @@ export type ChainWallet = {
             "type": "pubkey"
           },
           {
-            "name": "proxyProgram",
+            "name": "lockPubkey",
+            "docs": [
+              "use to lock account when execute with trigger lock"
+            ],
             "type": "pubkey"
           }
         ]
@@ -1867,6 +1796,10 @@ export type ChainWallet = {
           {
             "name": "threshold",
             "type": "u8"
+          },
+          {
+            "name": "enableAutoLock",
+            "type": "bool"
           },
           {
             "name": "executorNum",
@@ -1960,6 +1893,10 @@ export type ChainWallet = {
           {
             "name": "threshold",
             "type": "u8"
+          },
+          {
+            "name": "enableAutoLock",
+            "type": "bool"
           },
           {
             "name": "seedsNonce",
@@ -2396,6 +2333,38 @@ export type ChainWallet = {
       }
     },
     {
+      "name": "riskLockEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "riskRejectEvent",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
       "name": "rule",
       "type": {
         "kind": "struct",
@@ -2730,12 +2699,6 @@ export type ChainWallet = {
       "type": {
         "kind": "enum",
         "variants": [
-          {
-            "name": "delay",
-            "fields": [
-              "i64"
-            ]
-          },
           {
             "name": "lock"
           },
