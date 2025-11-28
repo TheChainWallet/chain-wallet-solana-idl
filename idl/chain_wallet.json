@@ -92,7 +92,7 @@
           "name": "delay_executor"
         },
         {
-          "name": "proxy_program"
+          "name": "lock_pubkey"
         },
         {
           "name": "config",

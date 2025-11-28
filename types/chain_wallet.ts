@@ -98,7 +98,7 @@ export type ChainWallet = {
           "name": "delayExecutor"
         },
         {
-          "name": "proxyProgram"
+          "name": "lockPubkey"
         },
         {
           "name": "config",
