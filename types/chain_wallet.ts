@@ -77,6 +77,31 @@ export type ChainWallet = {
       ]
     },
     {
+      "name": "close",
+      "discriminator": [
+        98,
+        165,
+        201,
+        177,
+        108,
+        65,
+        206,
+        96
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
       "name": "configInit",
       "discriminator": [
         13,
