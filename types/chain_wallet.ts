@@ -665,6 +665,7 @@ export type ChainWallet = {
         },
         {
           "name": "config",
+          "writable": true,
           "pda": {
             "seeds": [
               {

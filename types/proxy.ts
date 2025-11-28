@@ -36,6 +36,7 @@ export type Proxy = {
         },
         {
           "name": "config",
+          "writable": true,
           "pda": {
             "seeds": [
               {
