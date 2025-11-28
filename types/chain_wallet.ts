@@ -5,7 +5,7 @@
  * IDL can be found at `target/idl/chain_wallet.json`.
  */
 export type ChainWallet = {
-  "address": "DdetR1mTaQfj8GoQGcK4HFbeAfTiW74Z7fA6fptDsau7",
+  "address": "EY97THtfbhmcHDD7b5h8GgVvD6vk3eHUXEPUwaBUDqwG",
   "metadata": {
     "name": "chainWallet",
     "version": "0.1.0",
@@ -75,31 +75,6 @@ export type ChainWallet = {
           }
         }
       ]
-    },
-    {
-      "name": "close",
-      "discriminator": [
-        98,
-        165,
-        201,
-        177,
-        108,
-        65,
-        206,
-        96
-      ],
-      "accounts": [
-        {
-          "name": "admin",
-          "writable": true,
-          "signer": true
-        },
-        {
-          "name": "systemProgram",
-          "address": "11111111111111111111111111111111"
-        }
-      ],
-      "args": []
     },
     {
       "name": "configInit",
