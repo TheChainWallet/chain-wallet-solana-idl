@@ -647,6 +647,10 @@
       ],
       "accounts": [
         {
+          "name": "executor_pda",
+          "signer": true
+        },
+        {
           "name": "executor",
           "signer": true
         },

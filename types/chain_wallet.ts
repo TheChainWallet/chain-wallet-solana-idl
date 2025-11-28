@@ -653,6 +653,10 @@ export type ChainWallet = {
       ],
       "accounts": [
         {
+          "name": "executorPda",
+          "signer": true
+        },
+        {
           "name": "executor",
           "signer": true
         },
