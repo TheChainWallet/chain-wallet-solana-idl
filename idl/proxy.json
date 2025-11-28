@@ -30,7 +30,6 @@
         },
         {
           "name": "config",
-          "writable": true,
           "pda": {
             "seeds": [
               {
@@ -46,6 +45,26 @@
                   102,
                   105,
                   103
+                ]
+              }
+            ],
+            "program": {
+              "kind": "account",
+              "path": "chain_wallet_program"
+            }
+          }
+        },
+        {
+          "name": "fee",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  101,
+                  101
                 ]
               }
             ],

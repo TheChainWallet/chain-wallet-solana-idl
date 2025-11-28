@@ -36,7 +36,6 @@ export type Proxy = {
         },
         {
           "name": "config",
-          "writable": true,
           "pda": {
             "seeds": [
               {
@@ -52,6 +51,26 @@ export type Proxy = {
                   102,
                   105,
                   103
+                ]
+              }
+            ],
+            "program": {
+              "kind": "account",
+              "path": "chainWalletProgram"
+            }
+          }
+        },
+        {
+          "name": "fee",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  102,
+                  101,
+                  101
                 ]
               }
             ],
