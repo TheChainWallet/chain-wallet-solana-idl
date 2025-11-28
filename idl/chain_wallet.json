@@ -175,51 +175,8 @@
           "signer": true
         },
         {
-          "name": "wallet_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  119,
-                  97,
-                  108,
-                  108,
-                  101,
-                  116
-                ]
-              },
-              {
-                "kind": "arg",
-                "path": "params.nonce"
-              }
-            ]
-          }
-        },
-        {
           "name": "custody_account",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  99,
-                  99,
-                  111,
-                  117,
-                  110,
-                  116
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "wallet_account"
-              }
-            ]
-          }
+          "writable": true
         },
         {
           "name": "config",
@@ -1394,6 +1351,11 @@
       "code": 6012,
       "name": "NonceWrong",
       "msg": "Wrong nonce"
+    },
+    {
+      "code": 6013,
+      "name": "ManagerNotBeEmpty",
+      "msg": "Managers can not be empty"
     }
   ],
   "types": [

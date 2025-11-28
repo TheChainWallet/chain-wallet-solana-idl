@@ -181,51 +181,8 @@ export type ChainWallet = {
           "signer": true
         },
         {
-          "name": "walletAccount",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  119,
-                  97,
-                  108,
-                  108,
-                  101,
-                  116
-                ]
-              },
-              {
-                "kind": "arg",
-                "path": "params.nonce"
-              }
-            ]
-          }
-        },
-        {
           "name": "custodyAccount",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  97,
-                  99,
-                  99,
-                  111,
-                  117,
-                  110,
-                  116
-                ]
-              },
-              {
-                "kind": "account",
-                "path": "walletAccount"
-              }
-            ]
-          }
+          "writable": true
         },
         {
           "name": "config",
@@ -1400,6 +1357,11 @@ export type ChainWallet = {
       "code": 6012,
       "name": "nonceWrong",
       "msg": "Wrong nonce"
+    },
+    {
+      "code": 6013,
+      "name": "managerNotBeEmpty",
+      "msg": "Managers can not be empty"
     }
   ],
   "types": [
