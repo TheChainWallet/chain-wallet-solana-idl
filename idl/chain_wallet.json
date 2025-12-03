@@ -293,6 +293,7 @@
       "accounts": [
         {
           "name": "executor",
+          "writable": true,
           "signer": true
         },
         {
@@ -1250,6 +1251,11 @@
       "code": 6014,
       "name": "LockAccountNotExecutable",
       "msg": "Lock account exector can executable"
+    },
+    {
+      "code": 6015,
+      "name": "NotReachExecuteTime",
+      "msg": "Not react execute time"
     }
   ],
   "types": [

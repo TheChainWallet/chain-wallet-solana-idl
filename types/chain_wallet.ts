@@ -299,6 +299,7 @@ export type ChainWallet = {
       "accounts": [
         {
           "name": "executor",
+          "writable": true,
           "signer": true
         },
         {
@@ -1256,6 +1257,11 @@ export type ChainWallet = {
       "code": 6014,
       "name": "lockAccountNotExecutable",
       "msg": "Lock account exector can executable"
+    },
+    {
+      "code": 6015,
+      "name": "notReachExecuteTime",
+      "msg": "Not react execute time"
     }
   ],
   "types": [
