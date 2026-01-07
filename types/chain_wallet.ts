@@ -629,6 +629,74 @@ export type ChainWallet = {
       ]
     },
     {
+      "name": "metaExecute",
+      "discriminator": [
+        2,
+        147,
+        81,
+        115,
+        138,
+        37,
+        87,
+        10
+      ],
+      "accounts": [
+        {
+          "name": "executor",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "singer",
+          "writable": true
+        },
+        {
+          "name": "custodyAccount",
+          "writable": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  112,
+                  112,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proxyProgram"
+        },
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "meataTransactionParams"
+            }
+          }
+        }
+      ]
+    },
+    {
       "name": "ruleAdd",
       "discriminator": [
         250,
@@ -1261,7 +1329,7 @@ export type ChainWallet = {
     {
       "code": 6015,
       "name": "notReachExecuteTime",
-      "msg": "Not react execute time"
+      "msg": "Not reach execute time"
     }
   ],
   "types": [
@@ -1322,12 +1390,6 @@ export type ChainWallet = {
         "variants": [
           {
             "name": "normal"
-          },
-          {
-            "name": "delay",
-            "fields": [
-              "u32"
-            ]
           },
           {
             "name": "locked"
@@ -1436,20 +1498,6 @@ export type ChainWallet = {
           {
             "name": "nonce",
             "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "balanceType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "lamports"
-          },
-          {
-            "name": "token"
           }
         ]
       }
@@ -1862,6 +1910,20 @@ export type ChainWallet = {
             }
           },
           {
+            "name": "metaTransactions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "metaTaransaction"
+                }
+              }
+            }
+          },
+          {
+            "name": "metaTransactionMaxDuration",
+            "type": "u32"
+          },
+          {
             "name": "delayNonce",
             "type": "u64"
           },
@@ -1872,6 +1934,10 @@ export type ChainWallet = {
                 "name": "accountStatus"
               }
             }
+          },
+          {
+            "name": "delaySeconds",
+            "type": "u32"
           },
           {
             "name": "threshold",
@@ -2212,6 +2278,52 @@ export type ChainWallet = {
       }
     },
     {
+      "name": "meataTransactionParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hashSign",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "name": "signTimestamp",
+            "type": "u64"
+          },
+          {
+            "name": "data",
+            "type": "bytes"
+          }
+        ]
+      }
+    },
+    {
+      "name": "metaTaransaction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
       "name": "needApprovalTransaction",
       "type": {
         "kind": "struct",
@@ -2494,24 +2606,8 @@ export type ChainWallet = {
         "kind": "struct",
         "fields": [
           {
-            "name": "balanceType",
-            "type": {
-              "defined": {
-                "name": "balanceType"
-              }
-            }
-          },
-          {
             "name": "amount",
             "type": "u64"
-          },
-          {
-            "name": "transferDirection",
-            "type": {
-              "defined": {
-                "name": "transferType"
-              }
-            }
           }
         ]
       }
@@ -2521,22 +2617,6 @@ export type ChainWallet = {
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "balanceType",
-            "type": {
-              "defined": {
-                "name": "balanceType"
-              }
-            }
-          },
-          {
-            "name": "transferDirection",
-            "type": {
-              "defined": {
-                "name": "transferType"
-              }
-            }
-          },
           {
             "name": "interval",
             "type": "i64"
@@ -2562,22 +2642,6 @@ export type ChainWallet = {
         "kind": "struct",
         "fields": [
           {
-            "name": "balanceType",
-            "type": {
-              "defined": {
-                "name": "balanceType"
-              }
-            }
-          },
-          {
-            "name": "transferDirection",
-            "type": {
-              "defined": {
-                "name": "transferType"
-              }
-            }
-          },
-          {
             "name": "interval",
             "type": "i64"
           },
@@ -2592,20 +2656,6 @@ export type ChainWallet = {
           {
             "name": "thresholdAmount",
             "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "transferType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "from"
-          },
-          {
-            "name": "to"
           }
         ]
       }

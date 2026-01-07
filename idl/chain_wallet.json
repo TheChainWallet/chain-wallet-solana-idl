@@ -623,6 +623,74 @@
       ]
     },
     {
+      "name": "meta_execute",
+      "discriminator": [
+        2,
+        147,
+        81,
+        115,
+        138,
+        37,
+        87,
+        10
+      ],
+      "accounts": [
+        {
+          "name": "executor",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "singer",
+          "writable": true
+        },
+        {
+          "name": "custody_account",
+          "writable": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  112,
+                  112,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "proxy_program"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "MeataTransactionParams"
+            }
+          }
+        }
+      ]
+    },
+    {
       "name": "rule_add",
       "discriminator": [
         250,
@@ -1255,7 +1323,7 @@
     {
       "code": 6015,
       "name": "NotReachExecuteTime",
-      "msg": "Not react execute time"
+      "msg": "Not reach execute time"
     }
   ],
   "types": [
@@ -1316,12 +1384,6 @@
         "variants": [
           {
             "name": "Normal"
-          },
-          {
-            "name": "Delay",
-            "fields": [
-              "u32"
-            ]
           },
           {
             "name": "Locked"
@@ -1430,20 +1492,6 @@
           {
             "name": "nonce",
             "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "BalanceType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Lamports"
-          },
-          {
-            "name": "Token"
           }
         ]
       }
@@ -1856,6 +1904,20 @@
             }
           },
           {
+            "name": "meta_transactions",
+            "type": {
+              "vec": {
+                "defined": {
+                  "name": "MetaTaransaction"
+                }
+              }
+            }
+          },
+          {
+            "name": "meta_transaction_max_duration",
+            "type": "u32"
+          },
+          {
             "name": "delay_nonce",
             "type": "u64"
           },
@@ -1866,6 +1928,10 @@
                 "name": "AccountStatus"
               }
             }
+          },
+          {
+            "name": "delay_seconds",
+            "type": "u32"
           },
           {
             "name": "threshold",
@@ -2206,6 +2272,52 @@
       }
     },
     {
+      "name": "MeataTransactionParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hash_sign",
+            "type": {
+              "array": [
+                "u8",
+                64
+              ]
+            }
+          },
+          {
+            "name": "sign_timestamp",
+            "type": "u64"
+          },
+          {
+            "name": "data",
+            "type": "bytes"
+          }
+        ]
+      }
+    },
+    {
+      "name": "MetaTaransaction",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "timestamp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
       "name": "NeedApprovalTransaction",
       "type": {
         "kind": "struct",
@@ -2488,24 +2600,8 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "balance_type",
-            "type": {
-              "defined": {
-                "name": "BalanceType"
-              }
-            }
-          },
-          {
             "name": "amount",
             "type": "u64"
-          },
-          {
-            "name": "transfer_direction",
-            "type": {
-              "defined": {
-                "name": "TransferType"
-              }
-            }
           }
         ]
       }
@@ -2515,22 +2611,6 @@
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "balance_type",
-            "type": {
-              "defined": {
-                "name": "BalanceType"
-              }
-            }
-          },
-          {
-            "name": "transfer_direction",
-            "type": {
-              "defined": {
-                "name": "TransferType"
-              }
-            }
-          },
           {
             "name": "interval",
             "type": "i64"
@@ -2556,22 +2636,6 @@
         "kind": "struct",
         "fields": [
           {
-            "name": "balance_type",
-            "type": {
-              "defined": {
-                "name": "BalanceType"
-              }
-            }
-          },
-          {
-            "name": "transfer_direction",
-            "type": {
-              "defined": {
-                "name": "TransferType"
-              }
-            }
-          },
-          {
             "name": "interval",
             "type": "i64"
           },
@@ -2586,20 +2650,6 @@
           {
             "name": "threshold_amount",
             "type": "u64"
-          }
-        ]
-      }
-    },
-    {
-      "name": "TransferType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "From"
-          },
-          {
-            "name": "To"
           }
         ]
       }
