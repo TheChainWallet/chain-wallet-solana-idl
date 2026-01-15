@@ -773,9 +773,6 @@ export type ChainWallet = {
           }
         },
         {
-          "name": "proxyProgram"
-        },
-        {
           "name": "systemProgram",
           "address": "11111111111111111111111111111111"
         }
