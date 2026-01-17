@@ -1507,19 +1507,6 @@ export type ChainWallet = {
       ]
     },
     {
-      "name": "executeApprovalSuccessEvent",
-      "discriminator": [
-        109,
-        101,
-        24,
-        9,
-        4,
-        112,
-        221,
-        77
-      ]
-    },
-    {
       "name": "executeDelaySuccessEvent",
       "discriminator": [
         181,
@@ -1533,16 +1520,16 @@ export type ChainWallet = {
       ]
     },
     {
-      "name": "multisigApprovalEvent",
+      "name": "multisigApprovalRejectEvent",
       "discriminator": [
-        196,
-        40,
-        19,
-        192,
-        67,
-        70,
-        183,
-        142
+        34,
+        155,
+        214,
+        83,
+        112,
+        194,
+        58,
+        5
       ]
     },
     {
@@ -1569,19 +1556,6 @@ export type ChainWallet = {
         200,
         196,
         193
-      ]
-    },
-    {
-      "name": "multisigRejectEvent",
-      "discriminator": [
-        142,
-        70,
-        61,
-        120,
-        69,
-        115,
-        174,
-        235
       ]
     },
     {
@@ -2488,26 +2462,6 @@ export type ChainWallet = {
       }
     },
     {
-      "name": "executeApprovalSuccessEvent",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "wallet",
-            "type": "pubkey"
-          },
-          {
-            "name": "nonce",
-            "type": "u64"
-          },
-          {
-            "name": "timestamp",
-            "type": "i64"
-          }
-        ]
-      }
-    },
-    {
       "name": "executeDelaySuccessEvent",
       "type": {
         "kind": "struct",
@@ -2732,7 +2686,7 @@ export type ChainWallet = {
       }
     },
     {
-      "name": "multisigApprovalEvent",
+      "name": "multisigApprovalRejectEvent",
       "type": {
         "kind": "struct",
         "fields": [
@@ -2747,6 +2701,14 @@ export type ChainWallet = {
           {
             "name": "nonce",
             "type": "u64"
+          },
+          {
+            "name": "approvalReject",
+            "type": {
+              "defined": {
+                "name": "approvalReject"
+              }
+            }
           },
           {
             "name": "timestamp",
@@ -2837,6 +2799,14 @@ export type ChainWallet = {
             "type": "string"
           },
           {
+            "name": "pushType",
+            "type": {
+              "defined": {
+                "name": "multisigPushType"
+              }
+            }
+          },
+          {
             "name": "timestamp",
             "type": "i64"
           }
@@ -2860,25 +2830,15 @@ export type ChainWallet = {
       }
     },
     {
-      "name": "multisigRejectEvent",
+      "name": "multisigPushType",
       "type": {
-        "kind": "struct",
-        "fields": [
+        "kind": "enum",
+        "variants": [
           {
-            "name": "wallet",
-            "type": "pubkey"
+            "name": "multisig"
           },
           {
-            "name": "user",
-            "type": "pubkey"
-          },
-          {
-            "name": "nonce",
-            "type": "u64"
-          },
-          {
-            "name": "timestamp",
-            "type": "i64"
+            "name": "riskMultisig"
           }
         ]
       }
